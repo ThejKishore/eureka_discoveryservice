@@ -1,0 +1,29 @@
+server:
+  port: ${vcap.app.port:8761}
+  context-path: /eurekaserver
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: eurekaserver
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    hostname: ${vcap.app.hostname:localhost}
+    non-secure-port: 80
+
+
+---
+
+spring:
+  profiles: cloud
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+
+
+
